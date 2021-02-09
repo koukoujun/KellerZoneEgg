@@ -60,11 +60,21 @@ module.exports = appInfo => {
       enable: false,
       ignoreJSON: true,
     },
-    domainWhiteList: ['127.0.0.1'],
+    domainWhiteList: [ 'http://127.0.0.1' ],
   };
   config.cors = {
-    origin: '*',
-    allowMethods: 'GET,HEAD,PUT,POST,DELETE,PATCH',
+    origin: 'http://127.0.0.1:8080',//一定要是域名端口
+    credentials:true,//credentials设置为true,和前端保持一致
+    allowMethods: 'GET,POST'
+  }
+
+  //session配置
+  config.session = {
+    key: 'EGG_SESS',  //eggjs默认session的key
+    maxAge: 24 * 3600 * 1000,  // 1 day
+    httpOnly: true,
+    encrypt: true,
+    renew: true  //每次访问页面都会给session会话延长时间
   };
   // swagger配置
   config.swaggerdoc = {

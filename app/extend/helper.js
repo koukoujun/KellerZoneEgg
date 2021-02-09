@@ -21,7 +21,7 @@ module.exports = {
   },
   //获取token并转码为uuid
   uuid(){
-    const token = this.ctx.request.header.authorization;
+    const token = this.ctx.request.header.token;
     let decode = this.ctx.app.jwt.verify(token, this.ctx.app.options.secret);
     return decode.uuid
   },
@@ -62,7 +62,7 @@ module.exports = {
       await sendToWormhole(stream);
       this.error();
     }
-    const image_path = '/public/uploads/'+dirname+'/'+filename
+    const image_path ='http://'+this.ctx.header.host + '/public/uploads/'+dirname+'/'+filename
     return image_path
   }
 }

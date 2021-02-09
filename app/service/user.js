@@ -8,14 +8,13 @@ class UserService extends Service {
     return result;
   }
   async user(){
-    const path = 'http://'+this.ctx.header.host
     const result = await this.app.mysql.select('user',{
       where:{uuid:this.ctx.helper.uuid()},
       columns:['user_name','avatar_url','position','company','introduce']
     })
     if (result != null) {
       //拼接图片地址
-      result[0].avatar_url = path + result[0].avatar_url
+      result[0].avatar_url = result[0].avatar_url
       return JSON.stringify({
         code:'1',
         message:'success',

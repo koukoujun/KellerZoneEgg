@@ -23,9 +23,9 @@ class toolsService extends Service {
   }
   //职业工具-列表
   async list() {
-    let option = {columns: ['*'],}
+    let option = {}
     if(this.ctx.request.body.type&&this.ctx.request.body.type!=''){
-      option = {columns: ['*'],where:{type:this.ctx.request.body.type}}
+      option = {where:{type:this.ctx.request.body.type}}
     }
     const result =  await this.app.mysql.select('tools',option)
     console.log(result)

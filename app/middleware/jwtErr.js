@@ -1,7 +1,7 @@
 //middleware/jwtErr.js
 module.exports = (options) => {
   return async function jwtErr(ctx, next) {
-      const token = ctx.request.header.authorization;
+      const token = ctx.request.header.token;
       let decode = '';
       if (token) {
         try {
